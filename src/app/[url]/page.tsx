@@ -1,13 +1,15 @@
 import Stack from "../../lib/contentstack";
 
-async function getPost(uid: string) {
-  const Query = Stack.ContentType("blog_post").Query().where("uid", uid);
+async function getPost(url: string) {
+  const Query = Stack.ContentType("blog_post").Query().where("url", url);
   const result = await Query.toJSON().find();
   return result[0][0];
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.uid);
+export default async function BlogPostPage({ params }: { params: { url: string } }) {
+  console.log(params)
+  const post = await getPost("/" +params.url);
+
 
   return (
     <main className="max-w-2xl mx-auto p-6">

@@ -7,7 +7,7 @@ async function getPosts() {
   return result[0].map((p: any) => ({
     uid: p.uid,
     title: p.title,
-    slug: p.slug,
+    url: p.url,
   }));
 }
 
@@ -20,7 +20,7 @@ export default async function HomePage() {
       <div className="space-y-4">
         {posts.map((post) => (
           <div key={post.uid} className="border-b border-gray-300 pb-2">
-            <Link href={`/${post.uid}`}>
+            <Link href={post.url}>
               <span className="text-xl font-medium hover:underline cursor-pointer">
                 {post.title}
               </span>
